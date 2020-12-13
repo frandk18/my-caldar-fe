@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
 
 export default class AddNew extends Component {
-    state= {showForm: false}
-
-    showForm = () => {
+    render(){
         return (
-            <div> 
-                <form id= "add-app">
+            <div style={formStyle}> 
+                <form>
+                    <label>Company: </label>
+                    <input type="text" />
 
-                    <label>Application Name : </label>
-                    <input type="text"> </input>
+                    <label>Name: </label>
+                    <input type="text" />
 
-                    <label> id : </label>
-                    <input type="text" ></input>
+                    <label>Address: </label>
+                    <input type="text" />
 
-                    <label>Server details : </label>
-                    <input ></input>
+                    <label>Zip Code: </label>
+                    <input type="text" />
 
-                    <button>Create</button>
+                    <label>Contact: </label>
+                    <input type="text" />
+
+                    <label>Phone: </label>
+                    <input type="text" />
+
+                    <label>Email: </label>
+                    <input type="text" />
+
+                    <button>Add</button>
                 </form>
             </div>
         );
     }
+}
 
-    render(){
-        return (
-            <div className='manage-app'>
-            <h1>Manage Application</h1>
-            <button  onClick={() => this.setState({showForm: true}) }>Add New Application</button>
-            <button>Change Existing Application</button>
-            <button>Remove Application</button>
-            {this.state.showForm ? this.showForm() : null}
-            </div>
-        );
-    }
+const formStyle = {
+    border: '1px #707070 solid',
+    padding: '10px',
+    marginBottom: '20px',
+    borderRadius: '15px',
 }

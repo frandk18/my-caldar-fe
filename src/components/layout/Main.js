@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Table from '../Table';
+import Container from '../Container';
 import PropTypes from 'prop-types';
 
 export default class Main extends Component {
     render() {
         return (
             <main style={mainStyle}>
-                <Table data={this.props.data} addItem={this.props.addItem} delItem={this.props.delItem}/>
+                <Container data={this.props.data} delItem={this.props.delItem}/>
             </main>
         );
     }

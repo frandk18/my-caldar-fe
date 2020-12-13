@@ -9,29 +9,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Buildings
+      Buildings,
     };
-  }
-
-  // Add item in the collection
-  addItem = () => {
-    return (
-        <div> 
-            <form id= "add-app">
-
-                <label>Application Name : </label>
-                <input type="text"> </input>
-
-                <label> id : </label>
-                <input type="text" ></input>
-
-                <label>Server details : </label>
-                <input ></input>
-
-                <button>Create</button>
-            </form>
-        </div>
-    );
   }
 
   // Delete item from collection
@@ -43,7 +22,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main data={this.state.Buildings} addItem={this.addItem} delItem={this.delItem}/>
+        <Main data={this.state.Buildings} delItem={this.delItem}/>
       </div>
     );
   }

@@ -42,7 +42,8 @@ const rowStyle = {
 }
 
 const btnContainerStyle = {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'center',
 }
 
 const btnStyle = {
