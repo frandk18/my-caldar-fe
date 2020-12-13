@@ -9,7 +9,7 @@ export default function Title() {
 }
 
 const titleStyle = {
-    fontSize: '20px',
+    fontSize: '22px',
     fontWeight: '600',
     color: '#094455',
     textDecoration: 'underline', 

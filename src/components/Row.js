@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { FaTrash } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
 
-export default class Item extends Component {
+export default class Row extends Component {
     render() {
         const { _id, company, name, address, zipcode, contact, phone, email } = this.props.row;
         return (
             <tr style={rowStyle}>
-                <td>{company}</td>
-                <td>{name}</td>
-                <td>{address}</td>
-                <td>{zipcode}</td>
-                <td>{contact}</td>
-                <td>{phone}</td>
-                <td>{email}</td>
-                <td>
+                <td style={cellStyle}>{company}</td>
+                <td style={cellStyle}>{name}</td>
+                <td style={cellStyle}>{address}</td>
+                <td style={cellStyle}>{zipcode}</td>
+                <td style={cellStyle}>{contact}</td>
+                <td style={cellStyle}>{phone}</td>
+                <td style={cellStyle}>{email}</td>
+                <td style={cellStyle}>
                     <div style={btnContainerStyle}>
                         <button style={btnStyle}><MdCreate /></button>
                         <button onClick={this.props.delItem.bind(this, _id)} style={btnStyle}><FaTrash /></button>
@@ -26,12 +26,19 @@ export default class Item extends Component {
     }
 }
 
-Item.propTypes = {
-    row: PropTypes.object.isRequired
+Row.propTypes = {
+    row: PropTypes.object.isRequired,
+    delItem: PropTypes.func.isRequired,
+}
+
+const cellStyle = {
+    padding: '5px 20px'
 }
 
 const rowStyle = {
     background: '#CED6DC',
+    lineHeight: '25px',
+    border: '1px #707070 solid',
 }
 
 const btnContainerStyle = {

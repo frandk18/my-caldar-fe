@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import List from '../List';
+import Table from '../Table';
 import PropTypes from 'prop-types';
 
 export default class Main extends Component {
     render() {
         return (
             <main style={mainStyle}>
-                <List data={this.props.data} delItem={this.props.delItem}/>
+                <Table data={this.props.data} addItem={this.props.addItem} delItem={this.props.delItem}/>
             </main>
         );
     }
 }
 
 Main.propTypes = {
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    addItem: PropTypes.func.isRequired,
+    delItem: PropTypes.func.isRequired,
 }
 
 const mainStyle = {

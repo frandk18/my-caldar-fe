@@ -18,6 +18,7 @@ const headerStyle = {
 }
 
 const h1Style = {
+    fontSize: '42px',
     color: '#ffffff',
     textAlign: 'center'
 }
