@@ -9,9 +9,10 @@ export default function Title() {
 }
 
 const titleStyle = {
-    fontSize: '18px',
+    fontSize: '20px',
     fontWeight: '600',
     color: '#094455',
     textDecoration: 'underline', 
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: '20px' 
 }

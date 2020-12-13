@@ -5,24 +5,23 @@ import { MdCreate } from "react-icons/md";
 
 export default class Item extends Component {
     render() {
+        const { _id, company, name, address, zipcode, contact, phone, email } = this.props.row;
         return (
-            <li style={itemStyle}>
-                {this.props.row.company +
-                ' | ' +
-                this.props.row.name +
-                ' | ' +
-                this.props.row.address +
-                ' | ' +
-                this.props.row.zipcode +
-                ' | ' +
-                this.props.row.phone +
-                ' | ' +
-                this.props.row.contact}
-                <div style={btnContainerStyle}>
-                    <button style={btnStyle}><MdCreate /></button>
-                    <button style={btnStyle}><FaTrash /></button>
-                </div>
-            </li>
+            <tr style={rowStyle}>
+                <td>{company}</td>
+                <td>{name}</td>
+                <td>{address}</td>
+                <td>{zipcode}</td>
+                <td>{contact}</td>
+                <td>{phone}</td>
+                <td>{email}</td>
+                <td>
+                    <div style={btnContainerStyle}>
+                        <button style={btnStyle}><MdCreate /></button>
+                        <button onClick={this.props.delItem.bind(this, _id)} style={btnStyle}><FaTrash /></button>
+                    </div>
+                </td>
+            </tr>
         );
     }
 }
@@ -31,30 +30,22 @@ Item.propTypes = {
     row: PropTypes.object.isRequired
 }
 
-const itemStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: '14px',
+const rowStyle = {
     background: '#CED6DC',
-    border: '1px #ccc solid',
-    color: '#094455',
-    padding: '5px',
-    margin: '10px',
-    listStyleType: 'none'
 }
 
 const btnContainerStyle = {
-    display: 'flex',
-    marginLeft: '15px'
+    display: 'flex'
 }
 
 const btnStyle = {
     display: 'flex',
     justifyContent: 'center',
     background: '#fff',
-    padding: '3px',
-    margin: '0 2px',
+    padding: '4px',
+    margin: '0 3px',
     borderWidth: '1px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    overflow: 'hidden',
+    cursor: 'pointer'
 }
