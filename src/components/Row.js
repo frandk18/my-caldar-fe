@@ -17,8 +17,8 @@ export default class Row extends Component {
                 <td style={cellStyle}>{email}</td>
                 <td style={cellStyle}>
                     <div style={btnContainerStyle}>
-                        <button style={btnStyle}><MdCreate /></button>
-                        <button onClick={this.props.delItem.bind(this, _id)} style={btnStyle}><FaTrash /></button>
+                        <button style={btnStyle} onClick={this.props.editItem} ><MdCreate /></button>
+                        <button style={btnStyle} onClick={this.props.delItem.bind(this, _id)} ><FaTrash /></button>
                     </div>
                 </td>
             </tr>
@@ -28,6 +28,7 @@ export default class Row extends Component {
 
 Row.propTypes = {
     row: PropTypes.object.isRequired,
+    editItem: PropTypes.func.isRequired,
     delItem: PropTypes.func.isRequired,
 }
 

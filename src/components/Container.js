@@ -18,11 +18,16 @@ export default class Container extends Component {
         this.setState({ showForm: true })
     }
 
+    // Display new item form
+    hideForm = () => {
+        this.setState({ showForm: false })
+    }
+
     render() {
         return (
             <div style={containerStyle}>
                 <Title />
-                {this.state.showForm && <AddNew />}
+                {this.state.showForm && <AddNew newOne={this.props.addItem} hideForm={this.hideForm}/>}
                 <Table data={this.props.data} displayForm={this.displayForm} delItem={this.props.delItem}/>
             </div>
         );
@@ -31,14 +36,15 @@ export default class Container extends Component {
 
 Container.propTypes = {
     data: PropTypes.array.isRequired,
-    addItem: PropTypes.func.isRequired,
     delItem: PropTypes.func.isRequired,
+    addItem: PropTypes.func.isRequired,
 }
 
 const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     border: '2px #707070 solid',
     borderRadius: '25px',
     padding: '30px 50px 50px 50px'

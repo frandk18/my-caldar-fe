@@ -18,11 +18,16 @@ export default class App extends Component {
     this.setState({ Buildings: [...this.state.Buildings.filter(building => building._id !== id)] })
   }
 
+  // Add item from collection
+  addItem = (newItem) => {
+    this.setState({ Buildings: [...this.state.Buildings, newItem] })
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Main data={this.state.Buildings} delItem={this.delItem}/>
+        <Main data={this.state.Buildings} delItem={this.delItem} addItem={this.addItem}/>
       </div>
     );
   }

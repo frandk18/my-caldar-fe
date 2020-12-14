@@ -6,7 +6,7 @@ export default class Main extends Component {
     render() {
         return (
             <main style={mainStyle}>
-                <Container data={this.props.data} delItem={this.props.delItem}/>
+                <Container data={this.props.data} delItem={this.props.delItem} addItem={this.props.addItem}/>
             </main>
         );
     }
@@ -14,8 +14,8 @@ export default class Main extends Component {
 
 Main.propTypes = {
     data: PropTypes.array.isRequired,
-    addItem: PropTypes.func.isRequired,
     delItem: PropTypes.func.isRequired,
+    addItem: PropTypes.func.isRequired,
 }
 
 const mainStyle = {
