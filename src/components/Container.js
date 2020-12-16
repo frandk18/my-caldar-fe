@@ -28,7 +28,7 @@ export default class Container extends Component {
 
     // Hide Form
     hideForm = () => {
-        this.setState({ showForm: false, editing: false, edited: {} })
+        this.setState({ showForm: false, editing: false, edited: [] })
     }
 
     render() {
