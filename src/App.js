@@ -20,13 +20,11 @@ export default class App extends Component {
 
   // Add item from collection
   addItem = (newItem) => {
-    console.log("ADDING NEW ITEM", newItem);
     this.setState({ Buildings: [...this.state.Buildings, newItem] });
   }
 
   // Add item from collection
   editItem = (editedItem) => {
-    console.log("EDITING ITEM", editedItem);
     this.setState({
       Buildings: [...this.state.Buildings.map((building) => {
         if (building._id === editedItem._id) {

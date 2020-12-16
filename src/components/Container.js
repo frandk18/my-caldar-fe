@@ -22,13 +22,13 @@ export default class Container extends Component {
         if (Object.keys(building).length !== 0) {
             this.setState({ showForm: true , editing: true, edited: building })
         } else {
-            this.setState({ showForm: true , edited: this.props.data.filter(building => building._id === id) })
+            this.setState({ showForm: true , editing: false, edited: this.props.data.filter(building => building._id === id) })
         }
     }
 
     // Hide Form
     hideForm = () => {
-        this.setState({ showForm: false })
+        this.setState({ showForm: false, editing: false })
     }
 
     render() {

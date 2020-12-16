@@ -8,7 +8,7 @@ export default class BuildingForm extends Component {
         this.state = {
             _id: this.props.editing ? this.props.editedItem[0]._id : uuid(),
             company: this.props.editing ? this.props.editedItem[0].company : '',
-            boilers: this.props.editing ? this.props.editedItem[0].boilers : '',
+            boilers: this.props.editing ? this.props.editedItem[0].boilers : [],
             name: this.props.editing ? this.props.editedItem[0].name : '',
             address: this.props.editing ? this.props.editedItem[0].address : '',
             zipcode: this.props.editing ? this.props.editedItem[0].zipcode : '',
@@ -36,6 +36,7 @@ export default class BuildingForm extends Component {
     };
 
     render(){
+        
         const { company, boilers, name, address, zipcode, contact, phone, email, obs } = this.state;
         return (
             <div style={addnewStyle}> 
@@ -44,14 +45,19 @@ export default class BuildingForm extends Component {
                         <div style={columnStyle}>
                             <label>Company: </label>
                             <select name="company" value={company} onChange={this.handleChange}>
-                                <option disabled hidden>{'Select a company'}</option>
                                 {this.props.data.map((building, index) => {
                                     return <option key={index} value={building.company}>{building.company}</option>
                                 })}
                             </select>
                             
                             <label>Boilers: </label>
-                            <select name="boilers" value={boilers} onChange={this.handleChange}></select>
+                            <select name="boilers" value={boilers[0]} onChange={this.handleChange}>
+                                {this.props.data.map((building) => (
+                                    building.boilers.map((boiler,index) => {
+                                        return <option key={index} value={boiler.$oid}>{boiler.$oid}</option>
+                                    })
+                                ))}
+                            </select>
 
                             <label>Name: </label>
                             <input type="text" name="name" value={name} onChange={this.handleChange}/>
