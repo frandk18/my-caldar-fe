@@ -17,7 +17,7 @@ export default class Row extends Component {
                 <td style={cellStyle}>{email}</td>
                 <td style={cellStyle}>
                     <div style={btnContainerStyle}>
-                        <button style={btnStyle} onClick={this.props.editItem} ><MdCreate /></button>
+                        <button style={btnStyle} onClick={this.props.editItem.bind(this, _id)} ><MdCreate /></button>
                         <button style={btnStyle} onClick={this.props.delItem.bind(this, _id)} ><FaTrash /></button>
                     </div>
                 </td>

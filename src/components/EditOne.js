@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class AddNew extends Component {
+export default class EditOne extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            _id: '4354',
+            _id: '',
             company: '',
             boilers: '',
             name: '',
@@ -24,43 +24,45 @@ export default class AddNew extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.newOne(this.state)
-        this.props.hideForm()
+        this.props.editOne(this.state)
+        this.props.hideEdit()
     };
 
     render(){
+        const { company, boilers, name, address, zipcode, contact, phone, email, obs } = this.props.edited[0];
+        console.log(this.state)
         return (
             <div style={addnewStyle}> 
                 <form style={formStyle} onSubmit={this.handleSubmit}>
                     <div style={{display:'flex'}}>
                         <div style={columnStyle}>
                             <label>Company: </label>
-                            <select name="company" value={this.state.company} onChange={this.handleChange}></select>
+                            <input name="company" defaultValue={company} onChange={this.handleChange}/>
                             
                             <label>Boilers: </label>
-                            <select name="boilers" value={this.state.boilers} onChange={this.handleChange}></select>
+                            <input name="boilers" defaultValue={boilers} onChange={this.handleChange}/>
 
                             <label>Name: </label>
-                            <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                            <input type="text" name="name" defaultValue={name} onChange={this.handleChange}/>
 
                             <label>Address: </label>
-                            <input type="text" name="address" value={this.state.address} onChange={this.handleChange}/>
+                            <input type="text" name="address" defaultValue={address} onChange={this.handleChange}/>
 
                             <label>Zip Code: </label>
-                            <input type="text" name="zipcode" value={this.state.zipcode} onChange={this.handleChange}/>
+                            <input type="text" name="zipcode" defaultValue={zipcode} onChange={this.handleChange}/>
                         </div>
                         <div style={columnStyle}>
                             <label>Contact: </label>
-                            <input type="text" name="contact" value={this.state.contact} onChange={this.handleChange}/>
+                            <input type="text" name="contact" defaultValue={contact} onChange={this.handleChange}/>
 
                             <label>Phone: </label>
-                            <input type="number" name="phone" value={this.state.phone} onChange={this.handleChange}/>
+                            <input type="text" name="phone" defaultValue={phone} onChange={this.handleChange}/>
 
                             <label>Email: </label>
-                            <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
+                            <input type="text" name="email" defaultValue={email} onChange={this.handleChange}/>
 
                             <label>Observations: </label>
-                            <textarea type="text" name="obs" value={this.state.obs} onChange={this.handleChange}/>
+                            <textarea type="text" name="obs" defaultValue={obs} onChange={this.handleChange}/>
                         </div>
                     </div>
                     <button style={btnStyle} type="submit">Confirm</button>
@@ -70,8 +72,10 @@ export default class AddNew extends Component {
     }
 }
 
-AddNew.propTypes = {
-    newOne: PropTypes.func.isRequired,
+EditOne.propTypes = {
+    edited: PropTypes.array.isRequired,
+    hideEdit: PropTypes.func.isRequired,
+    //editOne: PropTypes.func.isRequired,
 }
 
 const addnewStyle = {

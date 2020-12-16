@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddNew from './AddNew';
+import BuildingForm from './BuildingForm';
 import Title from './layout/Title';
 import Table from './Table';
 import PropTypes from 'prop-types';
@@ -8,17 +8,25 @@ export default class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          showForm: false
+          showForm: false,
+          editing: false,
+          edited: [],
         };
         this.displayForm = this.displayForm.bind(this);
+        this.hideForm = this.hideForm.bind(this);
     }
 
-    // Display new item form
-    displayForm = () => {
-        this.setState({ showForm: true })
+    // Form handler
+    displayForm = (id) => {
+        const building = this.props.data.filter(building => building._id === id);
+        if (Object.keys(building).length !== 0) {
+            this.setState({ showForm: true , editing: true, edited: building })
+        } else {
+            this.setState({ showForm: true , edited: this.props.data.filter(building => building._id === id) })
+        }
     }
 
-    // Display new item form
+    // Hide Form
     hideForm = () => {
         this.setState({ showForm: false })
     }
@@ -27,8 +35,8 @@ export default class Container extends Component {
         return (
             <div style={containerStyle}>
                 <Title />
-                {this.state.showForm && <AddNew newOne={this.props.addItem} hideForm={this.hideForm}/>}
-                <Table data={this.props.data} displayForm={this.displayForm} delItem={this.props.delItem}/>
+                {this.state.showForm && <BuildingForm data={this.props.data} addItem={this.props.addItem} editItem={this.props.editItem} editing={this.state.editing} editedItem={this.state.edited} displayForm={this.displayForm} hideForm={this.hideForm} />}
+                <Table data={this.props.data} displayForm={this.displayForm} hideForm={this.hideForm} delItem={this.props.delItem}/>
             </div>
         );
     }
@@ -38,6 +46,7 @@ Container.propTypes = {
     data: PropTypes.array.isRequired,
     delItem: PropTypes.func.isRequired,
     addItem: PropTypes.func.isRequired,
+    editItem: PropTypes.func.isRequired,
 }
 
 const containerStyle = {

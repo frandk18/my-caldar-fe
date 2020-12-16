@@ -25,8 +25,8 @@ export default class Table extends Component {
                     </tr>
                 </thead>
                 <tbody style={bodyStyle}>
-                    {this.props.data.map((row) => (
-                        <Row key={row._id.$oid} row={row} editItem={this.props.displayForm} delItem={this.props.delItem}/>
+                    {this.props.data.map((row, index) => (
+                        <Row key={index} row={row} editItem={this.props.displayForm} delItem={this.props.delItem}/>
                     ))}
                 </tbody>
             </table>
@@ -37,7 +37,9 @@ export default class Table extends Component {
 Table.propTypes = {
     data: PropTypes.array.isRequired,
     displayForm: PropTypes.func.isRequired,
-    editItem: PropTypes.func.isRequired,
+    hideForm: PropTypes.func.isRequired,
+    //displayNew: PropTypes.func.isRequired,
+    //displayEdit: PropTypes.func.isRequired,
     delItem: PropTypes.func.isRequired,
 }
 

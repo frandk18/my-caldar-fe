@@ -23,11 +23,16 @@ export default class App extends Component {
     this.setState({ Buildings: [...this.state.Buildings, newItem] })
   }
 
+  // Add item from collection
+  editItem = (editedItem) => {
+    console.log(editedItem)
+  }   
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Main data={this.state.Buildings} delItem={this.delItem} addItem={this.addItem}/>
+        <Main data={this.state.Buildings} addItem={this.addItem} delItem={this.delItem} editItem={this.editItem}/>
       </div>
     );
   }
