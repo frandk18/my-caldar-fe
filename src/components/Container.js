@@ -16,37 +16,38 @@ export default class Container extends Component {
         this.hideForm = this.hideForm.bind(this);
     }
 
-    // Form handler
+    // Display Form
     displayForm = (id) => {
-        const building = this.props.data.filter(building => building._id === id);
+        const building = this.props.buildings.filter(building => building._id === id);
         if (Object.keys(building).length !== 0) {
             this.setState({ showForm: true , editing: true, edited: building })
         } else {
-            this.setState({ showForm: true , editing: false, edited: this.props.data.filter(building => building._id === id) })
+            this.setState({ showForm: true , editing: false, edited: [] })
         }
     }
 
     // Hide Form
     hideForm = () => {
-        this.setState({ showForm: false, editing: false })
+        this.setState({ showForm: false, editing: false, edited: {} })
     }
 
     render() {
         return (
             <div style={containerStyle}>
                 <Title />
-                {this.state.showForm && <BuildingForm data={this.props.data} addItem={this.props.addItem} editItem={this.props.editItem} editing={this.state.editing} editedItem={this.state.edited} displayForm={this.displayForm} hideForm={this.hideForm} />}
-                <Table data={this.props.data} displayForm={this.displayForm} hideForm={this.hideForm} delItem={this.props.delItem}/>
+                {this.state.showForm && <BuildingForm buildings={this.props.buildings}  boilers={this.props.boilers} addItem={this.props.addItem} editItem={this.props.editItem} editing={this.state.editing} editedItem={this.state.edited} displayForm={this.displayForm} hideForm={this.hideForm} />}
+                <Table buildings={this.props.buildings} displayForm={this.displayForm} hideForm={this.hideForm} delItem={this.props.delItem}/>
             </div>
         );
     }
 }
 
 Container.propTypes = {
-    data: PropTypes.array.isRequired,
-    delItem: PropTypes.func.isRequired,
+    buildings: PropTypes.array.isRequired,
+    boilers: PropTypes.array.isRequired,
     addItem: PropTypes.func.isRequired,
     editItem: PropTypes.func.isRequired,
+    delItem: PropTypes.func.isRequired,
 }
 
 const containerStyle = {

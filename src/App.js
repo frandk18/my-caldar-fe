@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 import Buildings from './mocks/buildings.json';
+import Boilers from './mocks/boilers.json';
 
 export default class App extends Component {
 
@@ -10,6 +11,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       Buildings,
+      Boilers,
     };
   }
 
@@ -23,7 +25,7 @@ export default class App extends Component {
     this.setState({ Buildings: [...this.state.Buildings, newItem] });
   }
 
-  // Add item from collection
+  // Edit item from collection
   editItem = (editedItem) => {
     this.setState({
       Buildings: [...this.state.Buildings.map((building) => {
@@ -39,7 +41,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main data={this.state.Buildings} addItem={this.addItem} delItem={this.delItem} editItem={this.editItem}/>
+        <Main buildings={this.state.Buildings} boilers={this.state.Boilers} addItem={this.addItem} editItem={this.editItem} delItem={this.delItem}/>
       </div>
     );
   }

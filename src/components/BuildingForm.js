@@ -8,7 +8,7 @@ export default class BuildingForm extends Component {
         this.state = {
             _id: this.props.editing ? this.props.editedItem[0]._id : uuid(),
             company: this.props.editing ? this.props.editedItem[0].company : '',
-            boilers: this.props.editing ? this.props.editedItem[0].boilers : [],
+            boilers: this.props.editing ? this.props.editedItem[0].boilers : [{'$oid': ''}],
             name: this.props.editing ? this.props.editedItem[0].name : '',
             address: this.props.editing ? this.props.editedItem[0].address : '',
             zipcode: this.props.editing ? this.props.editedItem[0].zipcode : '',
@@ -21,8 +21,9 @@ export default class BuildingForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = (e) => {
+        e.preventDefault()
+        this.setState({ [e.target.name]: e.target.value })
     };
 
     handleSubmit = (e) => {
@@ -45,18 +46,16 @@ export default class BuildingForm extends Component {
                         <div style={columnStyle}>
                             <label>Company: </label>
                             <select name="company" value={company} onChange={this.handleChange}>
-                                {this.props.data.map((building, index) => {
+                                {this.props.buildings.map((building, index) => {
                                     return <option key={index} value={building.company}>{building.company}</option>
                                 })}
                             </select>
                             
                             <label>Boilers: </label>
                             <select name="boilers" value={boilers[0]} onChange={this.handleChange}>
-                                {this.props.data.map((building) => (
-                                    building.boilers.map((boiler,index) => {
-                                        return <option key={index} value={boiler.$oid}>{boiler.$oid}</option>
-                                    })
-                                ))}
+                                {this.props.boilers.map((boiler,index) => {
+                                        return <option key={index} value={boiler._id.$oid}>{boiler._id.$oid}</option>
+                                })}
                             </select>
 
                             <label>Name: </label>
@@ -90,7 +89,8 @@ export default class BuildingForm extends Component {
 }
 
 BuildingForm.propTypes = {
-    data: PropTypes.array.isRequired,
+    buildings: PropTypes.array.isRequired,
+    boilers: PropTypes.array.isRequired,
     addItem: PropTypes.func.isRequired,
     editItem: PropTypes.func.isRequired,
     editing: PropTypes.bool.isRequired,
