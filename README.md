@@ -1,4 +1,4 @@
-# Getting Started with Create React App - CaldAR Front-End
+# Getting started with React - CaldAR Front-End
 
 **Version 1.1.0**
 
