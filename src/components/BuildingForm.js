@@ -7,15 +7,15 @@ export default class BuildingForm extends Component {
         super(props);
         this.state = {
             _id: this.props.editing ? this.props.editedItem[0]._id : uuid(),
-            company: this.props.editing ? this.props.editedItem[0].company : null,
-            boilers: this.props.editing ? this.props.editedItem[0].boilers : null,
-            name: this.props.editing ? this.props.editedItem[0].name : null,
-            address: this.props.editing ? this.props.editedItem[0].address : null,
-            zipcode: this.props.editing ? this.props.editedItem[0].zipcode : null,
-            contact: this.props.editing ? this.props.editedItem[0].contact : null,
-            phone: this.props.editing ? this.props.editedItem[0].phone : null,
-            email: this.props.editing ? this.props.editedItem[0].email : null,
-            obs: this.props.editing ? this.props.editedItem[0].obs : null,
+            company: this.props.editing ? this.props.editedItem[0].company : '',
+            boilers: this.props.editing ? this.props.editedItem[0].boilers : '',
+            name: this.props.editing ? this.props.editedItem[0].name : '',
+            address: this.props.editing ? this.props.editedItem[0].address : '',
+            zipcode: this.props.editing ? this.props.editedItem[0].zipcode : '',
+            contact: this.props.editing ? this.props.editedItem[0].contact : '',
+            phone: this.props.editing ? this.props.editedItem[0].phone : '',
+            email: this.props.editing ? this.props.editedItem[0].email : '',
+            obs: this.props.editing ? this.props.editedItem[0].obs : '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +28,6 @@ export default class BuildingForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.hideForm()
-        console.log(this.state)
         if (!this.props.editing) {
             this.props.addItem(this.state)
         } else {
@@ -52,7 +51,7 @@ export default class BuildingForm extends Component {
                             </select>
                             
                             <label>Boilers: </label>
-                            <select name="boilers" value={boilers[0]} onChange={this.handleChange}></select>
+                            <select name="boilers" value={boilers} onChange={this.handleChange}></select>
 
                             <label>Name: </label>
                             <input type="text" name="name" value={name} onChange={this.handleChange}/>

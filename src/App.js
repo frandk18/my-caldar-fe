@@ -15,18 +15,27 @@ export default class App extends Component {
 
   // Delete item from collection
   delItem = (id) => {
-    this.setState({ Buildings: [...this.state.Buildings.filter(building => building._id !== id)] })
+    this.setState({ Buildings: [...this.state.Buildings.filter(building => building._id !== id)] });
   }
 
   // Add item from collection
   addItem = (newItem) => {
-    this.setState({ Buildings: [...this.state.Buildings, newItem] })
+    console.log("ADDING NEW ITEM", newItem);
+    this.setState({ Buildings: [...this.state.Buildings, newItem] });
   }
 
   // Add item from collection
   editItem = (editedItem) => {
-    console.log(editedItem)
-  }   
+    console.log("EDITING ITEM", editedItem);
+    this.setState({
+      Buildings: [...this.state.Buildings.map((building) => {
+        if (building._id === editedItem._id) {
+          building = editedItem;
+        }
+        return building;
+      })]
+    });
+  }  
 
   render() {
     return (
